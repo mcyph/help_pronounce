@@ -1,0 +1,17 @@
+{% if audio_files %}
+    {% for set_key, key, i_audio_files in audio_files %}
+        <div class="dynamic-item">
+            <h3>{{ key }}</h3>
+
+            {% for fn in i_audio_files %}
+                <li style="list-style-type: none">
+                    <audio id="audio{{ forloop.parentloop.counter0 }}_{{ forloop.counter0 }}" src="get_sound?key={{ set_key }}&file={{ fn }}" type="audio/mpeg"></audio>
+                    <button class="play" onclick="enunciating.play({{ forloop.parentloop.counter0 }}, {{ forloop.counter0 }})"><span style="color: green">&#9654;</span> Play</button>
+                    <a href="get_sound?key={{ set_key }}&file={{ fn }}"><button class="download"><b>↓</b> Download</button></a>
+                </li>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No sounds found.</p>
+{% endif %}
