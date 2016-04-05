@@ -63,7 +63,11 @@ button.play, button.download {
 
 
 div#copyrights {
-
+    color: gray;
+    margin: 30px auto;
+    width: 474px;
+    text-align: center;
+    font-size: 0.9em;
 }
 
 
