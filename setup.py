@@ -3,10 +3,10 @@
 from setuptools import setup
 
 setup(
-    name='helppronounce',
+    name='help_pronounce',
     version='1.0',
     description='',
-    author='David Morrissey',
+    author='Dave Morrissey',
     author_email='20507948+mcyph@users.noreply.github.com',
     url='http://www.python.org/sigs/distutils-sig/',
     install_requires=[
