@@ -1,8 +1,16 @@
+var xhr = null;
+
 
 var enunciating = {
     init: function() {
-        $('#search-input').keypress($.proxy(this.onSearchChange, this));
-        $('#search-input').keydown($.proxy(this.onSearchChange, this));
+        var fn = $.proxy(this.onSearchChange, this);
+        $('#search-input').val('');
+        $('#search-input').keypress(fn);
+        $('#search-input').keydown(fn);
+        $('#search-input').on('change', fn);
+        $('#search-input').on('reset', fn);
+        $('#search-input').click(fn);
+        $('#search-input').focus();
     },
 
     onSearchChange: function() {
@@ -11,8 +19,21 @@ var enunciating = {
 
     _onSearchChange: function() {
         var value = $('#search-input')[0].value;
+        if (this.curVal == value) {
+            return;
+        }
+        this.curVal = value;
 
-        $.ajax({
+        $.trim(value) ? $('#logo').hide() : $('#logo').show();
+        $('#logo').addClass('notransition');
+        document.documentElement.scrollTop = 0;
+        document.title = !$.trim(value) ? 'Enunciating Pilchard' : 'Enunciating Pilchard - '+$.trim(value);
+
+        if (xhr) {
+            xhr.abort();
+        }
+
+        xhr = $.ajax({
             url: "/dynamic?q="+encodeURIComponent(value),
             success: function(result) {
                 $("#dynamic").html(result);

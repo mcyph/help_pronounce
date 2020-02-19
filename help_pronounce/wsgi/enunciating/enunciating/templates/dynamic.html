@@ -15,3 +15,40 @@
 {% else %}
     <p>No sounds found.</p>
 {% endif %}
+
+
+{% if LWiki %}
+    <div class="dynamic-item">
+        <h3>From Wiktionary</h3>
+
+    {# IPA pronunciations #}
+    {% if LWiki.0 %}
+        <h4>IPA pronunciations</h4>
+        <ul>
+        {% for k, v in LWiki.0.items %}
+            <li><b>{{ k|escape }}</b>: {{ v|join:", "|escape }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {# Audio files #}
+    {% if LWiki.1 %}
+        <h4>Audio files</h4>
+        <ul>
+        {% for fnam, lang in LWiki.1 %}
+            <li><b>{{ lang|escape }}</b>: <a href="https://en.wiktionary.org/wiki/File:{{ fnam|escape }}" target="_blank">{{ fnam|escape }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {# Rhymes with #}
+    {% if LWiki.2 %}
+        <h4>Rhymes with</h4>
+        <ul>
+        {% for s in LWiki.2 %}
+            <li><a href="https://en.wiktionary.org/wiki/Rhymes:English/{{ s|escape }}" target="_blank">{{ s|escape }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+{% endif %}

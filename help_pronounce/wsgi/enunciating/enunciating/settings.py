@@ -11,13 +11,15 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from help_pronounce.get_package_dir import get_package_dir
+
 DJ_PROJECT_DIR = os.path.dirname(__file__)
-BASE_DIR = os.path.dirname(DJ_PROJECT_DIR)
+BASE_DIR = f'{get_package_dir()}'
 WSGI_DIR = f'{get_package_dir()}/wsgi'
 REPO_DIR = f'{get_package_dir()}/..'
 DATA_DIR = f'{get_package_dir()}/data'
 
 import sys
+sys.path.append(os.path.join(REPO_DIR, 'libs'))
 from help_pronounce.libs import secrets
 SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 
@@ -28,13 +30,14 @@ SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 SECRET_KEY = SECRETS['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #os.environ.get('DEBUG') == 'True'
+DEBUG = 'openshift' not in os.getcwd() #os.environ.get('DEBUG') == 'True'
 
 from socket import gethostname
 ALLOWED_HOSTS = [
-    gethostname(),
-    'www.helppronounce.com',
-    'helppronounce.com',
+    gethostname(), # For internal OpenShift load balancer security purposes.
+    os.environ.get('OPENSHIFT_APP_DNS'), # Dynamically map to the OpenShift gear name.
+    #'example.com', # First DNS alias (set up in the app)
+    #'www.example.com', # Second DNS alias (set up in the app)
 ]
 
 
@@ -116,8 +119,4 @@ STATICFILES_DIRS = [
 TEMPLATE_DIRS = (
     DJ_PROJECT_DIR + '/templates/',
 )
-
-
-
-ADMIN_ENABLED = False
 
