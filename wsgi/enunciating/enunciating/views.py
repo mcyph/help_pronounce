@@ -7,8 +7,8 @@ from load_index import load_index, map_to_idx
 
 DIndex = {}
 
-from os import getcwdu
-print getcwdu()
+from os import getcwd
+print(getcwd())
 
 DGlobal = {}
 DWords = {}
@@ -20,7 +20,7 @@ DGlobal['Betsy (US)'], DWords['Betsy (US)'] = load_index('../../data/sound/eng-w
 for k in list(DWords.keys()):
     DWords[k] = map_to_idx(DWords[k])
 
-print 'BETSY:', DWords['Betsy (US)']
+print('BETSY:', DWords['Betsy (US)'])
 
 
 def index(r):
@@ -37,7 +37,7 @@ def dynamic(r):
         if i_audio_files:
             audio_files.append([DSetKey[key], key, i_audio_files])
 
-    print audio_files
+    print(audio_files)
     template = loader.get_template('dynamic.html')
     context = RequestContext(r, {
         'audio_files': audio_files

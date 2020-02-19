@@ -52,10 +52,10 @@ def map_to_idx(DMap):
 
     for fn, i_D in DMap.items():
         if not fn.endswith('.wav') and not fn.endswith('.ogg'):
-            print fn
+            print(fn)
             continue
 
-        print i_D
+        print(i_D)
 
         D.setdefault(i_D['Pronounced Text Info']['Text'].lower(), []).append(fn.replace('.wav', '').replace('.ogg', ''))
 
