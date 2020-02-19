@@ -1,5 +1,5 @@
-from file_tools import file_iter
-from conv_keys import conv_keys
+from help_pronounce.libs.file_tools import file_iter
+from help_pronounce.libs.conv_keys import conv_keys
 
 
 def load_index(path):

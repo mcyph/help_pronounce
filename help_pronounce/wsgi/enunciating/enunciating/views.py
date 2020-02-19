@@ -2,7 +2,7 @@ from django.http import HttpResponse, StreamingHttpResponse
 from django.template import RequestContext, loader
 
 
-from load_index import load_index, map_to_idx
+from help_pronounce.libs.load_index import load_index, map_to_idx
 
 
 DIndex = {}
