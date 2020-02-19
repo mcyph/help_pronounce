@@ -15,4 +15,5 @@ setup(
     dependency_links=[
         'https://pypi.python.org/simple/django/'
     ],
+    packages = ['help_pronounce'],
 )
