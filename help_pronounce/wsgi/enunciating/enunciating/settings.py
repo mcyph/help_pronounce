@@ -10,14 +10,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from help_pronounce.get_package_dir import get_package_dir
 DJ_PROJECT_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.dirname(DJ_PROJECT_DIR)
-WSGI_DIR = os.path.dirname(BASE_DIR)
-REPO_DIR = os.path.dirname(WSGI_DIR)
-DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', BASE_DIR)
+WSGI_DIR = f'{get_package_dir()}/wsgi'
+REPO_DIR = f'{get_package_dir()}/..'
+DATA_DIR = f'{get_package_dir()}/data'
 
 import sys
-sys.path.append(os.path.join(REPO_DIR, 'libs'))
 from help_pronounce.libs import secrets
 SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 
