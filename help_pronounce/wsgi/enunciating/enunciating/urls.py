@@ -20,7 +20,7 @@ from django.contrib import admin
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    #url(r'^admin/', admin.site.urls),
     url(r'^index$', views.index),
     url(r'^dynamic$', views.dynamic),
     url(r'^get_sound$', views.get_sound)
