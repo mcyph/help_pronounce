@@ -118,3 +118,7 @@ TEMPLATE_DIRS = (
     DJ_PROJECT_DIR + '/templates/',
 )
 
+
+
+ADMIN_ENABLED = False
+
