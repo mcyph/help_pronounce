@@ -115,7 +115,7 @@ STATICFILES_DIRS = [
     STATIC_ROOT2
 ]
 
-STATIC_ROOT = os.path.expanduser('~/static_files')
+STATIC_ROOT = os.path.expanduser('~/static')
 
 TEMPLATE_DIRS = (
     DJ_PROJECT_DIR + '/templates/',
