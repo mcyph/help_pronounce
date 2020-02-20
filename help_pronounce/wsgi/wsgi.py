@@ -3,7 +3,7 @@
 import os
 import sys
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'enunciating.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'help_pronounce.wsgi.enunciating.enunciating.settings'
 #sys.path.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'enunciating'))
 from distutils.sysconfig import get_python_lib
 os.environ['PYTHON_EGG_CACHE'] = get_python_lib()
