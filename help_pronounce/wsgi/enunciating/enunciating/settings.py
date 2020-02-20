@@ -10,7 +10,12 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
+from socket import gethostname
+
+from help_pronounce.libs import secrets
 from help_pronounce.get_package_dir import get_package_dir
+
 
 DJ_PROJECT_DIR = os.path.dirname(__file__)
 BASE_DIR = f'{get_package_dir()}'
@@ -18,9 +23,7 @@ WSGI_DIR = f'{get_package_dir()}/wsgi'
 REPO_DIR = f'{get_package_dir()}/..'
 DATA_DIR = f'{get_package_dir()}/data'
 
-import sys
 sys.path.append(os.path.join(REPO_DIR, 'libs'))
-from help_pronounce.libs import secrets
 SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 
 # Quick-start development settings - unsuitable for production
@@ -30,9 +33,8 @@ SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 SECRET_KEY = SECRETS['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-from socket import gethostname
 ALLOWED_HOSTS = [
     gethostname(), # For internal OpenShift load balancer security purposes.
     os.environ.get('OPENSHIFT_APP_DNS'), # Dynamically map to the OpenShift gear name.
@@ -40,7 +42,6 @@ ALLOWED_HOSTS = [
     #'example.com', # First DNS alias (set up in the app)
     #'www.example.com', # Second DNS alias (set up in the app)
 ]
-
 
 # Application definition
 
@@ -84,7 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'help_pronounce.wsgi.enunciating.enunciating.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
@@ -105,7 +105,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -116,8 +115,8 @@ STATICFILES_DIRS = [
     STATIC_ROOT2
 ]
 
+STATIC_ROOT = os.path.expanduser('~/static_files')
 
 TEMPLATE_DIRS = (
     DJ_PROJECT_DIR + '/templates/',
 )
-
