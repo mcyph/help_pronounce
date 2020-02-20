@@ -27,7 +27,9 @@ var enunciating = {
         $.trim(value) ? $('#logo').hide() : $('#logo').show();
         $('#logo').addClass('notransition');
         document.documentElement.scrollTop = 0;
-        document.title = !$.trim(value) ? 'Enunciating Pilchard' : 'Enunciating Pilchard - '+$.trim(value);
+        document.title = !$.trim(value) ?
+            'HelpPronounce.com - find pronunciations and phonemes quickly!' :
+            'HelpPronounce.com - '+$.trim(value);
 
         if (xhr) {
             xhr.abort();
