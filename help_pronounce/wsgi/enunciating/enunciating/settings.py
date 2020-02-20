@@ -63,7 +63,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 # GETTING-STARTED: change 'myproject' to your project name:
-ROOT_URLCONF = 'enunciating.urls'
+ROOT_URLCONF = 'help_pronounce.wsgi.enunciating.enunciating.urls'
 
 TEMPLATES = [
     {
@@ -81,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'enunciating.wsgi.application'
+WSGI_APPLICATION = 'help_pronounce.wsgi.enunciating.enunciating.wsgi.application'
 
 
 # Database
